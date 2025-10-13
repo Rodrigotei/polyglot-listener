@@ -1,6 +1,6 @@
 <template>
   <v-btn class="bg-success mt-3 mx-auto d-block" @click="generate" :loading="loading" >
-    PRÓXIMA
+    NEXT
   </v-btn>
 </template>
 
@@ -13,7 +13,6 @@
     const props = defineProps({ generated: Boolean });
 
     watch(() => props.generated, (newValue) => {
-        console.log(newValue)
         loading.value = newValue; 
     });
 

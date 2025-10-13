@@ -1,10 +1,22 @@
 <template>
-  <Languages @languageSelected="updateLanguage" />
-  <Main :data="data" />
-  <BtnNewPhrase
-    @generatePhrase="generatePhrase"
-    :generated="generated"
-  />
+
+    <Languages 
+        @languageSelected="updateLanguage" 
+    />
+    
+    <Main 
+        v-if="selectedLanguage != null" 
+        :data="data" 
+        @startListening="startListening"
+        @stopListening="stopListening"
+    />
+    
+    <BtnNewPhrase 
+        v-if="selectedLanguage != null" 
+        @generatePhrase="generatePhrase" 
+        :generated="generated" 
+    />
+
 </template>
 
 <script setup>
@@ -16,7 +28,8 @@
     const data = ref(null);
     const selectedLanguage = ref(null);
     const generated = ref(null); 
-
+    
+    
     const updateLanguage = (lang) => {
         selectedLanguage.value = lang;
         generatePhrase();
@@ -39,6 +52,67 @@
             generated.value = false;
         }
     };
+    const speech = ref(null);
+
+    const startListening = () => {
+        let options = selectVoice(selectedLanguage.value)
+        puter.ai.txt2speech(data.value.split('==')[0], options).then((audio)=>{
+            speech.value = audio;
+            audio.play();
+        });
+    }
+    const stopListening = () => {
+        speech.value.pause();
+    }
+  
+    const selectVoice = (lang) => {
+    switch (lang) {
+        case "English":
+            return { voice: "Stephen", engine: "neural", language: "en-US" };
+            break;
+        case "Mandarin Chinese":
+            return { voice: "Zhiyu", engine: "neural", language: "cmn-CN" };
+            break;
+        case "Spanish":
+            return { voice: "Lucia", engine: "neural", language: "es-ES" };
+            break;
+        case "Hindi":
+            return { voice: "Kajal", engine: "neural", language: "hi-IN" };
+            break;
+        case "French":
+            return { voice: "Rémi", engine: "neural", language: "fr-FR" };
+            break;
+        case "Arabic":
+            return { voice: "Zeina", language: "ar-SA" };
+            break;
+        case "Russian":
+            return { voice: "Tatyana", language: "ru-RU" };
+            break;
+        case "German":
+            return { voice: "Daniel", engine: "neural", language: "de-DE" };
+            break;
+        case "Japanese":
+            return { voice: "Tomoko", engine: "neural", language: "ja-JP" };
+            break;
+        case "Turkish":
+            return { voice: "Burcu", engine: "neural", language: "tr-TR" };
+            break;
+        case "Korean":
+            return { voice: "Seoyeon", engine: "neural", language: "ko-KR" };
+            break;
+        case "Italian":
+            return { voice: "Adriano", engine: "neural", language: "it-IT" };
+            break;
+        default:
+            return { voice: "Stephen", engine: "neural", language: "en-US" };
+            break;
+    }
+};
+
+
+
 
     onMounted(() => generatePhrase());
 </script>
+
+

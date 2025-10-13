@@ -23,19 +23,12 @@ import { ref, computed } from 'vue';
 		{ en: "Hindi", pt: "Hindi" },
 		{ en: "French", pt: "Francês" },
 		{ en: "Arabic", pt: "Árabe" },
-		{ en: "Bengali", pt: "Bengali" },
 		{ en: "Russian", pt: "Russo" },
-		{ en: "Urdu", pt: "Urdu" },
-		{ en: "Indonesian", pt: "Indonésio" },
 		{ en: "German", pt: "Alemão" },
 		{ en: "Japanese", pt: "Japonês" },
 		{ en: "Turkish", pt: "Turco" },
 		{ en: "Korean", pt: "Coreano" },
 		{ en: "Italian", pt: "Italiano" },
-		{ en: "Vietnamese", pt: "Vietnamita" },
-		{ en: "Thai", pt: "Tailandês" },
-		{ en: "Persian Farsi", pt: "Persa Farsi" },
-		{ en: "Swahili", pt: "Suaíli" },
 	];
 	const displayLanguages = computed(() => {
 		return languages.map(lang => ({
