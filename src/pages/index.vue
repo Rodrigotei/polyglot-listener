@@ -9,6 +9,8 @@
         :data="data" 
         @startListening="startListening"
         @stopListening="stopListening"
+        :btnStartAudioDisabled="btnStartAudioDisabled"
+        :btnStopAudioDisabled="btnStopAudioDisabled"
     />
     
     <BtnNewPhrase 
@@ -28,8 +30,9 @@
     const data = ref(null);
     const selectedLanguage = ref(null);
     const generated = ref(null); 
-    
-    
+    const btnStartAudioDisabled = ref(true);
+    const btnStopAudioDisabled = ref(true);
+
     const updateLanguage = (lang) => {
         selectedLanguage.value = lang;
         generatePhrase();
@@ -50,18 +53,29 @@
             console.error("Erro ao gerar frase:", error);
         } finally {
             generated.value = false;
+            btnStartAudioDisabled.value = false;
         }
     };
     const speech = ref(null);
 
     const startListening = () => {
+        btnStartAudioDisabled.value = true;
+        btnStopAudioDisabled.value = false;
+
         let options = selectVoice(selectedLanguage.value)
         puter.ai.txt2speech(data.value.split('==')[0], options).then((audio)=>{
             speech.value = audio;
             audio.play();
+            audio.addEventListener('ended', () => {
+                btnStartAudioDisabled.value = false;
+                btnStopAudioDisabled.value = true;
+
+            });
         });
     }
     const stopListening = () => {
+        btnStartAudioDisabled.value = false;
+        btnStopAudioDisabled.value = true;
         speech.value.pause();
     }
   
