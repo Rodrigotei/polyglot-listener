@@ -36,7 +36,7 @@ Ele gera frases curtas em diversos idiomas com **tradução automática para por
 | 🇨🇳 Mandarin Chinese | Zhiyu | cmn-CN |
 | 🇪🇸 Spanish | Lucia | es-ES |
 | 🇮🇳 Hindi | Kajal | hi-IN |
-| 🇫🇷 French | Rémi | fr-FR |
+| 🇫🇷 French | Mathieu | fr-FR |
 | 🇸🇦 Arabic | Zeina | ar-SA |
 | 🇷🇺 Russian | Tatyana | ru-RU |
 | 🇩🇪 German | Daniel | de-DE |
