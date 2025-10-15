@@ -44,8 +44,21 @@
         data.value = null;
         generated.value = true; 
 
-        const prompt = `Create a short ${selectedLanguage.value} text for intermediate-level learners. Provide only the ${selectedLanguage.value} text followed by its Portuguese (pt-BR) translation, using this exact format: text == translation. Do not include any introductions, titles, or explanations. Only return the text in the format above.`;
-
+        // const prompt = `Create a short ${selectedLanguage.value} text for intermediate-level learners. Provide only the ${selectedLanguage.value} text followed by its Portuguese (pt-BR) translation, using this exact format: text == translation. Do not include any introductions, titles, or explanations. Only return the text in the format above.`;
+        const prompt = `
+            GENERATE a short, coherent text consisting of **2 to 3 complete sentences** in ${selectedLanguage.value}. The content MUST be appropriate for **intermediate-level learners (B1/B2)**, using common vocabulary and grammatical structures of that level.
+            
+            Your response MUST contain **ONLY** the following two components:
+            1. The short text in ${selectedLanguage.value}.
+            2. The complete and faithful Portuguese (pt-BR) translation of the text.
+            
+            The two components MUST be joined by the **EXACT delimiter ' == '**.
+            
+            **FINAL FORMAT REQUIRED:**
+            ${selectedLanguage.value} Text == Portuguese (pt-BR) Translation
+            
+            **STRICTLY PROHIBITED:** DO NOT include any introductions, titles, explanations, greetings, language markers (e.g., 'EN:', 'PT:', bolding, quotes, or numbering). The output must be ONLY the text in the specified format.
+        `;
         try {
             const response = await puter.ai.chat(prompt, { model: "gpt-4o" });
             data.value = response.message.content;
@@ -94,7 +107,7 @@
             return { voice: "Kajal", engine: "neural", language: "hi-IN" };
             break;
         case "French":
-            return { voice: "Rémi", engine: "neural", language: "fr-FR" };
+            return { voice: "Mathieu", language: "fr-FR" };
             break;
         case "Arabic":
             return { voice: "Zeina", language: "ar-SA" };
