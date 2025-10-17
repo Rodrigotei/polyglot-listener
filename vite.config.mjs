@@ -7,6 +7,7 @@ import Fonts from 'unplugin-fonts/vite'
 // Utilities
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
+import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,6 +17,31 @@ export default defineConfig({
     }),
     // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
     Vuetify(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      manifest: {
+        name: 'Polyglot Listener',
+        short_name: 'Polyglot Listener',
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#121212',
+        theme_color: '#2196f3',
+        icons: [
+          {
+        src: '/icons/android/android-launchericon-192-192.png',
+        sizes: '192x192',
+        type: 'image/png',
+        purpose: 'any maskable'
+      },
+      {
+        src: '/icons/android/android-launchericon-512-512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'any maskable'
+      }
+        ]
+      }
+    }),
     Components(),
     Fonts({
       fontsource: {

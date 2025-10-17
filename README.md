@@ -2,7 +2,7 @@
 <p align="center">
 🎧 <b>Pratique o Listening em Diversos Idiomas com IA</b>  
 <br>
-Feito com <b>Vue 3</b> + <b>Vuetify</b> + <b>Puter.js</b> + <b>GPT-4o</b>
+Feito com <b>Vue 3</b> + <b>Vuetify</b> + <b>Puter.js</b> + <b>GPT-4o</b> + <b>PWA (Progressive Web App)</b> 
 </p>
 
 ---
@@ -57,6 +57,7 @@ Ele gera frases curtas em diversos idiomas com **tradução automática para por
 | 🎨 **Vuetify 3** |
 | 🤖 **Puter.js** |
 | 🧠 **GPT-4o** |
+| 📱 **PWA (Progressive Web App)** |
 | 🔊 **HTMLAudioElement** |
 
 ---
